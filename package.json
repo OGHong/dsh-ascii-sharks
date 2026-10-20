@@ -1,0 +1,76 @@
+{
+  "name": "dsh-ascii-sharks",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness 的 ASCII 海洋背景：新建会话页上，一片字符画的海，几群真会躲鲨鱼的小鱼，明暗主题自适应，离屏即停",
+  "license": "SEE LICENSE IN NOTICE.md",
+  "author": "OGHong",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "NOTICE.md",
+    "LICENSE",
+    "docs"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    }
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "dsh",
+    "ascii",
+    "background",
+    "orca",
+    "artificial-life"
+  ],
+  "engines": {
+    "node": ">=22.6",
+    "dsh": ">=0.2.0-rc.2"
+  },
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "build:host": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "preview": "node scripts/build-preview.mjs",
+    "verify": "npm run typecheck && npm run build:host && npm run build"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "esbuild": "^0.28.2",
+    "react": "^18.3.1",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OGHong/dsh-ascii-sharks.git"
+  },
+  "homepage": "https://github.com/OGHong/dsh-ascii-sharks#readme",
+  "bugs": {
+    "url": "https://github.com/OGHong/dsh-ascii-sharks/issues"
+  }
+}

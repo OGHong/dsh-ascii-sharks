@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8" />
+		<title>ascii sharks — preview</title>
+		<style>
+			:root {
+				--bg: #151517;
+				--fg: #f9fafb;
+				--dim: #979da6;
+				--card: #2c2c2e;
+				--border: #ffffff29;
+				color-scheme: dark;
+			}
+			body[data-scheme="light"] {
+				--bg: #ffffff;
+				--fg: #0f1115;
+				--dim: #61666b;
+				--card: #f5f6f7;
+				--border: #00000029;
+				color-scheme: light;
+			}
+			* { box-sizing: border-box; }
+			html, body { height: 100%; margin: 0; }
+			body {
+				background: var(--bg);
+				color: var(--fg);
+				font: 14px/22px -apple-system, "PingFang SC", sans-serif;
+				display: grid;
+				grid-template-columns: 264px minmax(0, 1fr);
+				overflow: hidden;
+				transition: background 200ms ease, color 200ms ease;
+			}
+			aside {
+				background: color-mix(in srgb, var(--bg) 96%, #7a9bf0);
+				border-right: 0.5px solid var(--border);
+				padding: 14px;
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				font-size: 13px;
+			}
+			aside h1 { font-size: 13px; margin: 0 0 6px; color: var(--dim); font-weight: 500; }
+			aside .item { padding: 5px 8px; border-radius: 6px; color: var(--dim); }
+			aside .item.active { background: color-mix(in srgb, var(--fg) 8%, transparent); color: var(--fg); }
+			main { position: relative; overflow: hidden; display: flex; flex-direction: column; }
+			/* The conversation column: an opaque surface that owns its own stacking
+			   context, exactly like the shell's ConversationRoot at data-phase=hero. */
+			.hero {
+				position: relative;
+				isolation: isolate;
+				background: var(--bg);
+				flex: 1;
+				display: flex; flex-direction: column;
+				align-items: center; justify-content: center;
+				overflow: hidden;
+			}
+			.hero > canvas {
+				position: absolute; inset: 0; width: 100%; height: 100%;
+				display: block; pointer-events: none; z-index: -1;
+			}
+			.hero .stack { position: relative; width: min(680px, 84%); text-align: center; z-index: 1; }
+			.hero h2 { font-size: 26px; font-weight: 500; margin: 0 0 4px; letter-spacing: -0.01em; }
+			.hero p { color: var(--dim); margin: 0 0 18px; font-size: 13px; }
+			.composer {
+				background: var(--card);
+				border: 0.5px solid var(--border);
+				border-radius: 12px;
+				padding: 12px 14px;
+				text-align: left;
+				color: var(--dim);
+				min-height: 76px;
+				font-size: 13px;
+			}
+			.chips { display: flex; gap: 6px; margin-top: 10px; }
+			.chip { font: 500 11px/18px ui-monospace, Menlo, monospace; padding: 2px 8px; border-radius: 999px; border: 0.5px solid var(--border); }
+			.hud {
+				position: absolute; right: 12px; bottom: 12px; z-index: 3;
+				font: 11px/16px ui-monospace, Menlo, monospace;
+				color: var(--dim);
+				text-align: right;
+			}
+			.hud button {
+				font: inherit; color: var(--fg); background: var(--card);
+				border: 0.5px solid var(--border); border-radius: 6px;
+				padding: 3px 8px; cursor: pointer;
+			}
+		</style>
+	</head>
+	<body data-scheme="dark">
+		<aside>
+			<h1>会话</h1>
+			<div class="item active">新建会话</div>
+			<div class="item">今天</div>
+			<div class="item">昨天的长标题会话</div>
+			<div class="item">更早之前的一次讨论</div>
+			<div style="flex:1"></div>
+			<div class="item">设置</div>
+		</aside>
+		<main>
+			<div class="hero" id="hero" data-phase="hero">
+				<canvas id="c"></canvas>
+				<div class="stack">
+					<h2>今天做点什么？</h2>
+					<p>预览版：检查 ASCII 海洋在 hero 上的观感</p>
+					<div class="composer">
+						给 DeepSeek Harness 发消息…
+						<div class="chips">
+							<span class="chip">classic</span>
+							<span class="chip">hammerhead</span>
+							<span class="chip">thresher</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hud">
+				<div id="stats">…</div>
+				<div style="margin-top:6px; display:flex; gap:6px; justify-content:flex-end">
+					<button id="theme">切换明暗</button>
+					<button id="pause">暂停</button>
+				</div>
+			</div>
+		</main>
+		<script src="./harness.js"></script>
+		<!-- 先生成：npm run preview（输出 preview/harness.js，不入库） -->
+		<script>
+			const canvas = document.getElementById("c");
+			const hero = document.getElementById("hero");
+			const engine = new AsciiSharks.OceanEngine(canvas, {
+				sharks: [
+					{ kind: "classic", size: 1 },
+					{ kind: "hammerhead", size: 0.86 },
+					{ kind: "thresher", size: 0.74 },
+				],
+			});
+
+			function syncZone() {
+				const host = canvas.getBoundingClientRect();
+				const r = hero.getBoundingClientRect();
+				engine.setClearZone({
+					x: r.left - host.left + r.width / 2,
+					y: r.top - host.top + r.height / 2,
+					width: r.width * 1.06,
+					height: r.height * 1.06,
+				});
+			}
+			window.addEventListener("resize", syncZone);
+			syncZone();
+			setInterval(syncZone, 1000);
+
+			let scheme = "dark";
+			engine.setScheme(scheme, 0.9);
+			document.getElementById("theme").onclick = () => {
+				scheme = scheme === "dark" ? "light" : "dark";
+				document.body.dataset.scheme = scheme;
+				engine.setScheme(scheme, 0.9);
+			};
+			let paused = false;
+			const pauseBtn = document.getElementById("pause");
+			pauseBtn.onclick = () => {
+				paused = !paused;
+				engine.pause(paused);
+				pauseBtn.textContent = paused ? "继续" : "暂停";
+			};
+
+			window.__frames = 0;
+			(function count(){ window.__frames++; requestAnimationFrame(count); })();
+			const stats = document.getElementById("stats");
+			window.__engine = engine;
+			setInterval(() => {
+				const w = engine.world;
+				const alive = w.fish.filter((f) => f.alive).length;
+				stats.textContent = `${w.fish.length} 鱼 / ${alive} 在场 · ${w.sharks.length} 鲨 · t=${w.time.toFixed(1)}s`;
+			}, 250);
+		</script>
+	</body>
+</html>

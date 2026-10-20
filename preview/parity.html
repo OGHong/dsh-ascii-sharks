@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>parity</title>
+		<style>
+			html, body { margin: 0; height: 100%; background: #000; }
+			canvas { display: block; width: 100vw; height: 100vh; font-family: ui-monospace, Menlo, monospace; }
+		</style>
+	</head>
+	<body>
+		<canvas id="c"></canvas>
+		<script src="./harness.js"></script>
+		<script>
+			// Same conditions as the upstream demo page: full-bleed canvas, four
+			// classic sharks at the upstream sizes, no clear zone, no sidebar.
+			const engine = new AsciiSharks.OceanEngine(document.getElementById("c"), {
+				sharks: [
+					{ kind: "orca", size: 1 },
+					{ kind: "orca", size: 0.7 },
+					{ kind: "orca", size: 0.84 },
+					{ kind: "orca", size: 0.77 },
+				],
+			});
+			engine.setScheme(new URLSearchParams(location.search).get("scheme") === "light" ? "light" : "dark", 1);
+			const op = Number(new URLSearchParams(location.search).get("opacity") ?? "1");
+			engine.setOpacity(op);
+			document.body.style.background = new URLSearchParams(location.search).get("scheme") === "light" ? "#fff" : "#000";
+			window.__engine = engine;
+			window.__frames = 0;
+			(function count() { window.__frames++; requestAnimationFrame(count); })();
+		</script>
+	</body>
+</html>

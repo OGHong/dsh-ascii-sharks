@@ -1,0 +1,13 @@
+# dsh-ascii-sharks bundle patch: installs the plugin into a profile as one insert.
+# The row is addressed by id `ascii-sharks`, so a profile's own cordis.patch.yml can
+# retarget it later.
+#
+# The Host half is nearly empty on purpose: this plugin's whole product is a
+# browser surface, and the preferences live in that browser's `localStorage`. The
+# Host row exists so that `dsh-client-modules` finds the package — it scans Loader
+# entries for packages declaring `dsh.client`, and a package that is not in the
+# tree is a package whose browser half never loads.
+
+- insert:
+    - id: ascii-sharks
+      name: 'dsh-ascii-sharks'

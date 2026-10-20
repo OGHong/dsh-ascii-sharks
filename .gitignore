@@ -1,0 +1,4 @@
+node_modules/
+preview/harness.js
+preview/_entry.ts
+*.log

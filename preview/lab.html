@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+		<meta charset="utf-8" />
+		<title>ascii sharks — silhouette lab</title>
+		<style>
+			html, body { margin: 0; height: 100%; background: #151517; color: #f9fafb; font: 12px/18px ui-monospace, Menlo, monospace; }
+			body[data-scheme="light"] { background: #ffffff; color: #0f1115; }
+			header { padding: 8px 12px; border-bottom: 1px solid #ffffff1f; display: flex; gap: 12px; align-items: center; }
+			body[data-scheme="light"] header { border-color: #00000029; }
+			.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; }
+			.cell { position: relative; aspect-ratio: 1; }
+			.cell canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+			.cell span { position: absolute; top: 4px; left: 8px; opacity: .55; }
+			button { font: inherit; background: #2c2c2e; color: inherit; border: 1px solid #ffffff29; border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+			body[data-scheme="light"] button { background: #f5f6f7; border-color: #00000029; }
+		</style>
+	</head>
+	<body data-scheme="dark">
+		<header>
+			<span>外形实验室 · 每格一条静止鲨鱼（俯视平面外形）</span>
+			<button id="theme">明暗</button>
+			<span id="hint">…</span>
+		</header>
+		<div class="grid" id="grid"></div>
+		<script src="./harness.js"></script>
+		<script>
+			const KINDS = AsciiSharks.KINDS;
+			const grid = document.getElementById("grid");
+			let scheme = "dark";
+			const engines = [];
+
+			/**
+			 * One cell: a canvas, an engine, and a single shark laid out straight along
+			 * the x axis at a fixed phase, so the silhouette is what gets judged.
+			 */
+			function build() {
+				grid.innerHTML = "";
+				engines.length = 0;
+				for (const kind of KINDS) {
+					const cell = document.createElement("div");
+					cell.className = "cell";
+					const canvas = document.createElement("canvas");
+					cell.appendChild(canvas);
+					const label = document.createElement("span");
+					label.textContent = kind;
+					cell.appendChild(label);
+					grid.appendChild(cell);
+					engines.push({ kind, canvas });
+				}
+				// A second pass once layout has settled, so clientWidth is real.
+				requestAnimationFrame(() => requestAnimationFrame(render));
+			}
+
+			function render() {
+				for (const { kind, canvas } of engines) {
+					const engine = new AsciiSharks.OceanEngine(canvas, {
+						sharks: [{ kind, size: 1 }],
+						fishCount: 0,
+					});
+					engine.pause();
+					engine.setScheme(scheme, 1);
+					// 4s of settling so the shark reaches its patrol orbit, then freeze.
+					for (let i = 0; i < 240; i++) engine.world.step(1 / 60);
+					const sh = engine.world.sharks[0];
+					const rect = canvas.getBoundingClientRect();
+					// Force a big body: the silhouette is what is being judged, and at the
+					// real hero size a shark is only ~6 cells tall.
+					const target = Math.min(rect.width * 0.86, 620);
+					sh.length = target;
+					sh.depth = 1;
+					// Straighten it and place the spine across the middle.
+					sh.heading = 0;
+					sh.speed = 40;
+					sh.phase = 1.1;
+					const L = sh.length;
+					const seg = L / (AsciiSharks.SHARK_NODES - 1);
+					for (let n = 0; n < AsciiSharks.SHARK_NODES; n++) {
+						sh.nodes[n * 2] = rect.width / 2 - L / 2 + seg * n;
+						sh.nodes[n * 2 + 1] = rect.height / 2;
+					}
+					engine.renderer.render(engine.world, 1 / 60);
+					engines;
+					engine.destroy();
+				}
+				document.getElementById("hint").textContent =
+					`${KINDS.length} 种 · ${(engines[0]?.canvas.clientWidth ?? 0)}px 格`;
+			}
+
+			document.getElementById("theme").onclick = () => {
+				scheme = scheme === "dark" ? "light" : "dark";
+				document.body.dataset.scheme = scheme;
+				render();
+			};
+			window.addEventListener("resize", () => {
+				clearTimeout(window.__t);
+				window.__t = setTimeout(render, 150);
+			});
+			build();
+		</script>
+	</body>
+</html>
