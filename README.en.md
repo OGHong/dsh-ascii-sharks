@@ -7,15 +7,15 @@ Schools of fish that actually flee orcas, and orcas that actually hunt them. Ada
 > ## ⚠️ Read [NOTICE.md](NOTICE.md) first
 >
 > The simulation is ported from [**stackedlol/ascii-sharks**](https://github.com/stackedlol/ascii-sharks), which **has no LICENSE file**.
-> The MIT license here covers only this port's original work (orca geometry, the DSH plugin wiring, theme adaptation) — **not** the upstream schooling/predator simulation or renderer.
-> Fine for personal use. Get upstream permission before publishing, deploying at a company, or shipping commercially. Details in [NOTICE.md](NOTICE.md).
+> **This repository has no license** — there is no LICENSE file and it is not MIT. The ported engine carries no grant, so attaching an open-source license to the whole repo would misrepresent it.
+> Reading it, running it locally and learning from it is fine. To reuse it in your own project, deploy it at a company, or ship it commercially, get permission from the [upstream author](https://github.com/stackedlol/ascii-sharks/issues/1) first. Details in [NOTICE.md](NOTICE.md).
 
 ![An ASCII ocean behind the New Session screen](docs/hero-dark.png)
 
 ![The ASCII ocean settings page](docs/settings.png)
 
 <p>
-  <img alt="license" src="https://img.shields.io/badge/license-MIT%20(partial%2C%20see%20NOTICE)-blue">
+  <img alt="license" src="https://img.shields.io/badge/license-none%20(see%20NOTICE)-red">
   <img alt="dsh" src="https://img.shields.io/badge/DSH-0.2.1--rc.2-lightgrey">
   <img alt="deps" src="https://img.shields.io/badge/runtime%20deps-none-brightgreen">
 </p>
@@ -112,4 +112,4 @@ Orca markings were checked against [NOAA's killer whale anatomy notes](https://o
 
 ## License
 
-MIT for this port's original work. See [NOTICE.md](NOTICE.md) — it does not cover the upstream code.
+**None.** This repository grants no rights. See [NOTICE.md](NOTICE.md).

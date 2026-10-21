@@ -2,7 +2,7 @@
   "name": "dsh-ascii-sharks",
   "version": "0.1.0",
   "description": "DeepSeek Harness 的 ASCII 海洋背景：新建会话页上，一片字符画的海，几群真会躲鲨鱼的小鱼，明暗主题自适应，离屏即停",
-  "license": "SEE LICENSE IN NOTICE.md",
+  "license": "UNLICENSED",
   "author": "OGHong",
   "type": "module",
   "main": "lib/index.js",
@@ -22,7 +22,6 @@
     "README.md",
     "README.en.md",
     "NOTICE.md",
-    "LICENSE",
     "docs"
   ],
   "dsh": {
@@ -72,5 +71,6 @@
   "homepage": "https://github.com/OGHong/dsh-ascii-sharks#readme",
   "bugs": {
     "url": "https://github.com/OGHong/dsh-ascii-sharks/issues"
-  }
+  },
+  "private": true
 }

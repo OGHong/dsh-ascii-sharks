@@ -7,11 +7,11 @@ DeepSeek Harness 的 ASCII 海洋背景：新建会话页上，一片字符画�
 > ## ⚠️ 先读 [NOTICE.md](NOTICE.md)
 >
 > 这个项目的引擎移植自 [**stackedlol/ascii-sharks**](https://github.com/stackedlol/ascii-sharks)，而**上游没有 LICENSE 文件**。
-> 根目录的 MIT 只覆盖本项目的原创部分（虎鲸外形、DSH 插件接线、主题适配等），**不覆盖上游的鱼群/鲨鱼模拟与渲染器**。
-> 自用没问题；公开发布、公司部署、商业集成之前，请先取得上游作者的授权。详见 [NOTICE.md](NOTICE.md)。
+> **本仓库没有许可证**（没有 LICENSE 文件，也不是 MIT）。因为移植进来的引擎本身没有授权，给整个仓库挂开源许可证会误导人。
+> 自己用、本地跑、读代码没问题；要复用到自己项目、公司部署或商用，请先向[上游作者](https://github.com/stackedlol/ascii-sharks/issues/1)取得授权。详见 [NOTICE.md](NOTICE.md)。
 
 <p>
-  <img alt="license" src="https://img.shields.io/badge/license-MIT%20(partial%2C%20see%20NOTICE)-blue">
+  <img alt="license" src="https://img.shields.io/badge/license-none%20(see%20NOTICE)-red">
   <img alt="dsh" src="https://img.shields.io/badge/DSH-0.2.1--rc.2-lightgrey">
   <img alt="deps" src="https://img.shields.io/badge/runtime%20deps-none-brightgreen">
 </p>
@@ -108,7 +108,7 @@ src/
 
 引擎逻辑、行为参数与外形比例移植自 [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks)（TypeScript，零依赖）。
 
-上游仓库**当时没有 LICENSE 文件**，issue #1「Missing license」还开着，两条评论都在求 MIT。所以：本仓库的 MIT 许可只覆盖重写与适配部分，不覆盖上游作者的作品；把这份代码用于商业分发之前，先把上游的授权问清楚。
+上游仓库**当时没有 LICENSE 文件**，issue #1「Missing license」还开着。所以本仓库也**不提供许可证** —— 移植进来的部分我没有权利授权给你，原创部分我也选择不授权。想合法复用，先找上游作者。
 
 改动清单：
 

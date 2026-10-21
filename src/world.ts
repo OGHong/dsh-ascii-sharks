@@ -1,9 +1,10 @@
 /**
- * PORTED CODE — see NOTICE.md and LICENSE before reuse.
+ * PORTED CODE — NOT covered by any license grant from this repository.
  *
  * Derived from https://github.com/stackedlol/ascii-sharks, which had no license
- * file at the time of porting. Copyright in the upstream work remains with its
- * author(s); the MIT license in this repository does NOT cover this file.
+ * file at the time of porting. Copyright remains with that project's author(s).
+ *
+ * This repository grants you no rights to this file. See NOTICE.md.
  */
 /**
  * The artificial-life simulation behind the ocean: fish schools, and the sharks
