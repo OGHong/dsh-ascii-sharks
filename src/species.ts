@@ -1,4 +1,11 @@
 /**
+ * PORTED CODE — see NOTICE.md and LICENSE before reuse.
+ *
+ * Derived from https://github.com/stackedlol/ascii-sharks, which had no license
+ * file at the time of porting. Copyright in the upstream work remains with its
+ * author(s); the MIT license in this repository does NOT cover this file.
+ */
+/**
  * The five schooling species, as parameter tables.
  *
  * Each row is a *behaviour mix*, not art: the same boids solver produces a

@@ -1,4 +1,11 @@
 /**
+ * PORTED CODE — see NOTICE.md and LICENSE before reuse.
+ *
+ * Derived from https://github.com/stackedlol/ascii-sharks, which had no license
+ * file at the time of porting. Copyright in the upstream work remains with its
+ * author(s); the MIT license in this repository does NOT cover this file.
+ */
+/**
  * Shark silhouettes, described as mathematics rather than stored as pictures.
  *
  * Every entry is a top-down plan view of one species, expressed as fractions of

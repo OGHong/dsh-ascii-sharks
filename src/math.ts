@@ -1,4 +1,11 @@
 /**
+ * PORTED CODE — see NOTICE.md and LICENSE before reuse.
+ *
+ * Derived from https://github.com/stackedlol/ascii-sharks, which had no license
+ * file at the time of porting. Copyright in the upstream work remains with its
+ * author(s); the MIT license in this repository does NOT cover this file.
+ */
+/**
  * Small numeric helpers shared by the simulation and the renderer.
  *
  * Everything here is pure: given the same inputs it answers the same value, so
