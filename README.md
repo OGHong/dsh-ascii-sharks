@@ -9,6 +9,8 @@ DeepSeek Harness 的 ASCII 海洋背景：新建会话页上，一片字符画�
 > 这个项目的引擎移植自 [**stackedlol/ascii-sharks**](https://github.com/stackedlol/ascii-sharks)，而**上游没有 LICENSE 文件**。
 > **本仓库没有许可证**（没有 LICENSE 文件，也不是 MIT）。因为移植进来的引擎本身没有授权，给整个仓库挂开源许可证会误导人。
 > 自己用、本地跑、读代码没问题；要复用到自己项目、公司部署或商用，请先向[上游作者](https://github.com/stackedlol/ascii-sharks/issues/1)取得授权。详见 [NOTICE.md](NOTICE.md)。
+>
+> 授权请求已于 2026-10-21 [在上游 issue #1 留言](https://github.com/stackedlol/ascii-sharks/issues/1#issuecomment-6312209674)，**目前等回复**。取得授权后这里会换成正式 LICENSE；被拒绝则重写受影响的五个文件。
 
 <p>
   <img alt="license" src="https://img.shields.io/badge/license-none%20(see%20NOTICE)-red">

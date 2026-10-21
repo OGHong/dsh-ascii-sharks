@@ -9,6 +9,8 @@ Schools of fish that actually flee orcas, and orcas that actually hunt them. Ada
 > The simulation is ported from [**stackedlol/ascii-sharks**](https://github.com/stackedlol/ascii-sharks), which **has no LICENSE file**.
 > **This repository has no license** — there is no LICENSE file and it is not MIT. The ported engine carries no grant, so attaching an open-source license to the whole repo would misrepresent it.
 > Reading it, running it locally and learning from it is fine. To reuse it in your own project, deploy it at a company, or ship it commercially, get permission from the [upstream author](https://github.com/stackedlol/ascii-sharks/issues/1) first. Details in [NOTICE.md](NOTICE.md).
+>
+> A licensing request was posted upstream on 2026-10-21 ([issue #1](https://github.com/stackedlol/ascii-sharks/issues/1#issuecomment-6312209674)) and is **awaiting a reply**. If granted, a proper LICENSE lands here; if declined, the five affected files get rewritten.
 
 ![An ASCII ocean behind the New Session screen](docs/hero-dark.png)
 
