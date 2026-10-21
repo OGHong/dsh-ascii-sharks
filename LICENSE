@@ -1,6 +1,28 @@
-MIT License
+MIT License — applies to THIS PORT'S ORIGINAL WORK ONLY
 
 Copyright (c) 2026 OG Hong
+
+This repository contains two bodies of work with different copyright status:
+
+  1. ORIGINAL WORK OF THIS REPOSITORY — covered by the MIT license below.
+     The orca geometry (orcaHalfWidth, flukes, paddle, patch, saddle), all of the
+     DeepSeek Harness plugin wiring (src/entry.ts, src/surface.tsx,
+     src/settings-row.tsx, src/store.ts, src/index.ts), the light/dark theme
+     adaptation, whole-canvas opacity, the whale tail beat, the build scripts and
+     the preview pages.
+
+  2. PORTED WORK — NOT covered by this license.
+     The schooling simulation, predator steering, cell rasteriser and shark
+     silhouettes are derived from https://github.com/stackedlol/ascii-sharks,
+     which ships with no license file at the time of writing. Copyright in that
+     work remains with its author(s). See NOTICE.md.
+
+If you redistribute this repository, or anything derived from it, carry both this
+file and NOTICE.md with it.
+
+---
+
+MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
