@@ -47,6 +47,10 @@
 | 移植的引擎（`world.ts` / `renderer.ts` / `shapes.ts` / `species.ts` / `math.ts`） | drewdi，**外加本仓库的移植与增补** | MIT |
 | 本仓库原创（虎鲸外形、DSH 接线、主题适配、生命周期、构建脚本） | OG Hong | MIT |
 
+`LICENSE` 里只有标准 MIT 正文，不含额外说明 —— GitHub 的许可证识别器要跟模板
+逐句比对，正文里插一段解释就会被判成 `Other / NOASSERTION`。分工与来源全部记在这
+份 NOTICE 与源码文件头里。
+
 两份都要求保留版权声明与许可全文 —— 所以：
 
 - **自己用、本地跑、读代码** —— 随意；

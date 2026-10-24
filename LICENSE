@@ -1,17 +1,7 @@
 MIT License
 
-Copyright (c) 2026 drewdi — simulation, cell rasteriser, shark silhouettes and
-                       numeric helpers, ported from
-                       https://github.com/stackedlol/ascii-sharks
-Copyright (c) 2026 OG Hong — orca geometry, DeepSeek Harness plugin wiring,
-                       theme adaptation, whole-canvas opacity, whale tail beat,
-                       build scripts and preview pages
-
-Both notices above apply to this repository as a whole. Files that carry a
-"PORTED CODE" header (src/world.ts, src/renderer.ts, src/shapes.ts,
-src/species.ts, src/math.ts) contain work by both holders: drewdi's original
-engine, plus this repository's ports and additions on top of it. NOTICE.md maps
-which part is whose.
+Copyright (c) 2026 drewdi
+Copyright (c) 2026 OG Hong
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
