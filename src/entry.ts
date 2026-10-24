@@ -1,4 +1,6 @@
 /**
+ * Copyright (c) 2026 OG Hong — MIT. See LICENSE at the repository root.
+ *
  * `dsh-ascii-sharks` — registration only.
  *
  * Two contributions and nothing else:

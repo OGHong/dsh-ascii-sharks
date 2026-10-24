@@ -4,20 +4,17 @@ DeepSeek Harness 的 ASCII 海洋背景：新建会话页上，一片字符画�
 
 几群真会躲虎鲸的鱼，几头真会追鱼的虎鲸。明暗主题自适应，整体半透明，离屏即停，鼠标划过会惊散鱼群。
 
-> ## ⚠️ 先读 [NOTICE.md](NOTICE.md)
+> ## 📄 MIT（2026-10-24 起）
 >
-> 这个项目的引擎移植自 [**stackedlol/ascii-sharks**](https://github.com/stackedlol/ascii-sharks)，而**上游没有 LICENSE 文件**。
-> **本仓库没有许可证**（没有 LICENSE 文件，也不是 MIT）。因为移植进来的引擎本身没有授权，给整个仓库挂开源许可证会误导人。
-> 自己用、本地跑、读代码没问题；要复用到自己项目、公司部署或商用，请先向[上游作者](https://github.com/stackedlol/ascii-sharks/issues/1)取得授权。详见 [NOTICE.md](NOTICE.md)。
->
-> 授权请求已于 2026-10-21 [在上游 issue #1 留言](https://github.com/stackedlol/ascii-sharks/issues/1#issuecomment-6312209674)，**目前等回复**。取得授权后这里会换成正式 LICENSE；被拒绝则重写受影响的五个文件。
+> 这个项目的引擎移植自 [**stackedlol/ascii-sharks**](https://github.com/stackedlol/ascii-sharks)。上游原来没有许可证文件，2026-10-24 补上了 **MIT**（[`add MIT license`](https://github.com/stackedlol/ascii-sharks/commit/a0074c16a106f0abc665fe9712ca445f8f98ad8e)，作者在 [issue #1](https://github.com/stackedlol/ascii-sharks/issues/1) 回复 "Added MIT license"）。
+> 所以**本仓库也是 MIT**，`LICENSE` 里并列两条版权行：drewdi（引擎）与 OGHong（虎鲸、DSH 接线、主题与生命周期）。用、改、商用、分发都可以，带上 LICENSE 即可。详情见 [NOTICE.md](NOTICE.md)。
 
 <p>
-  <img alt="license" src="https://img.shields.io/badge/license-none%20(see%20NOTICE)-red">
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="dsh" src="https://img.shields.io/badge/DSH-0.2.1--rc.2-lightgrey">
   <img alt="deps" src="https://img.shields.io/badge/runtime%20deps-none-brightgreen">
 </p>
-引擎移植自 [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks)，**重写为一个 DSH 客户端插件**：宿主生命周期、明暗主题、整体透明度、虎鲸外形都是新加的。授权见 [NOTICE.md](NOTICE.md)。
+引擎移植自 [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks)，**重写为一个 DSH 客户端插件**：宿主生命周期、明暗主题、整体透明度、虎鲸外形都是新加的。授权见 [LICENSE](LICENSE) 与 [NOTICE.md](NOTICE.md)。
 
 ![新建会话页上的 ASCII 海洋](docs/hero-dark.png)
 
@@ -108,9 +105,9 @@ src/
 
 ## 来源
 
-引擎逻辑、行为参数与外形比例移植自 [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks)（TypeScript，零依赖）。
+引擎逻辑、行为参数与外形比例移植自 [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks)（TypeScript，零依赖，Copyright (c) 2026 drewdi）。
 
-上游仓库**当时没有 LICENSE 文件**，issue #1「Missing license」还开着。所以本仓库也**不提供许可证** —— 移植进来的部分我没有权利授权给你，原创部分我也选择不授权。想合法复用，先找上游作者。
+上游在 2026-10-24 补了 MIT，本仓库同步采用 MIT。`LICENSE` 里两条版权声明并列，`NOTICE.md` 有逐文件归属表。
 
 改动清单：
 
@@ -119,4 +116,9 @@ src/
 - 新增虎鲸外形与白眼斑/鞍斑（`FLAG_PALE`），并新增整体透明度（作用在 canvas 合成层上）；
 - 上游 `base.css` 之外还画了一圈环境点阵，这里去掉——在 DSH 里它和宿主的字符网格打架；
 - 指针输入、离屏暂停、可见性暂停、`prefers-reduced-motion` 全部接到宿主生命周期上；
-- 新增配置 store、设置行、locale 字典。
+- 新增配置 store、设置行、locale 字典；
+- 跟上游 `1c3a384 resize fix`（PR #3）：resize 时只在网格尺寸真的变了才重新分配 per-cell 数组，否则保留尾迹 —— 不跟的话每次窗口拖动都会把整片尾迹清空。
+
+## 许可
+
+**MIT**，见 [LICENSE](LICENSE)。两条版权声明并列：drewdi（上游引擎）与 OG Hong（本仓库原创部分）。分发编译产物时请保留 `lib/client.js` 顶部的版权 banner。

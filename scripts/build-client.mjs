@@ -57,8 +57,33 @@ const bundled = result.outputFiles[0]?.text ?? "";
  * `require` is the loader's own name-to-module lookup; `module`/`exports` are the
  * CommonJS face esbuild's output expects to find in scope. The trailing
  * `return module.exports` is what the loader takes as the entry's value.
+ *
+ * The banner above it is not decoration. esbuild runs with `legalComments: "none"`
+ * and `minify: true`, so every copyright line in `src/` is gone by this point —
+ * and MIT requires the notice to travel with the copies. This bundle *is* the
+ * distributed artifact, so the notice is written into it here.
  */
-const wrapped = `window.__ModuleLoader__.load({
+const BANNER = `/*!
+ * dsh-ascii-sharks — MIT License
+ *
+ * Copyright (c) 2026 drewdi — simulation, cell rasteriser, shark silhouettes and
+ * numeric helpers, ported from https://github.com/stackedlol/ascii-sharks
+ * Copyright (c) 2026 OG Hong — orca geometry, DeepSeek Harness plugin wiring,
+ * theme adaptation, opacity, whale tail beat, build scripts, preview pages
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions: the above copyright notice and this
+ * permission notice shall be included in all copies or substantial portions of
+ * the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+ * Full text: LICENSE in the repository root.
+ */
+`;
+
+const wrapped = `${BANNER}window.__ModuleLoader__.load({
 	id: ${JSON.stringify(PACKAGE_NAME)},
 	factory: (require) => {
 		var module = { exports: {} };

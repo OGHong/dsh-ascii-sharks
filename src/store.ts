@@ -1,4 +1,6 @@
 /**
+ * Copyright (c) 2026 OG Hong — MIT. See LICENSE at the repository root.
+ *
  * Persisted preferences for the ocean.
  *
  * A tiny external store with the exact shape `useSyncExternalStore` wants, plus a

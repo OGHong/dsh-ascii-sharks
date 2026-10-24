@@ -4,20 +4,17 @@ An ASCII ocean behind the New Session screen of [DeepSeek Harness](https://githu
 
 Schools of fish that actually flee orcas, and orcas that actually hunt them. Adapts to the shell's light/dark theme, renders at partial opacity, stops when off-screen, and scatters the fish when the pointer passes through.
 
-> ## ⚠️ Read [NOTICE.md](NOTICE.md) first
+> ## 📄 MIT, since 2026-10-24
 >
-> The simulation is ported from [**stackedlol/ascii-sharks**](https://github.com/stackedlol/ascii-sharks), which **has no LICENSE file**.
-> **This repository has no license** — there is no LICENSE file and it is not MIT. The ported engine carries no grant, so attaching an open-source license to the whole repo would misrepresent it.
-> Reading it, running it locally and learning from it is fine. To reuse it in your own project, deploy it at a company, or ship it commercially, get permission from the [upstream author](https://github.com/stackedlol/ascii-sharks/issues/1) first. Details in [NOTICE.md](NOTICE.md).
->
-> A licensing request was posted upstream on 2026-10-21 ([issue #1](https://github.com/stackedlol/ascii-sharks/issues/1#issuecomment-6312209674)) and is **awaiting a reply**. If granted, a proper LICENSE lands here; if declined, the five affected files get rewritten.
+> The simulation is ported from [**stackedlol/ascii-sharks**](https://github.com/stackedlol/ascii-sharks). That project had no license file; on 2026-10-24 it added **MIT** ([`add MIT license`](https://github.com/stackedlol/ascii-sharks/commit/a0074c16a106f0abc665fe9712ca445f8f98ad8e), and the author answered "Added MIT license" on [issue #1](https://github.com/stackedlol/ascii-sharks/issues/1)).
+> **This repository is MIT too.** `LICENSE` carries two copyright lines side by side: drewdi (the engine) and OG Hong (orca, DSH wiring, theme, lifecycle). Use it, change it, ship it commercially, redistribute it — keep LICENSE with it. Details in [NOTICE.md](NOTICE.md).
 
 ![An ASCII ocean behind the New Session screen](docs/hero-dark.png)
 
 ![The ASCII ocean settings page](docs/settings.png)
 
 <p>
-  <img alt="license" src="https://img.shields.io/badge/license-none%20(see%20NOTICE)-red">
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="dsh" src="https://img.shields.io/badge/DSH-0.2.1--rc.2-lightgrey">
   <img alt="deps" src="https://img.shields.io/badge/runtime%20deps-none-brightgreen">
 </p>
@@ -107,11 +104,11 @@ Built and verified against DSH `0.2.1-rc.2`. It depends on three internal detail
 
 ## Credits
 
-Simulation, behaviour tuning and the shark silhouettes: [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks).
-Orca geometry, DSH plugin wiring, theme adaptation, opacity and the whale tail beat: this repository.
+Simulation, behaviour tuning and the shark silhouettes: [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks), Copyright (c) 2026 drewdi, MIT.
+Orca geometry, DSH plugin wiring, theme adaptation, opacity and the whale tail beat: this repository, Copyright (c) 2026 OG Hong, MIT.
 
 Orca markings were checked against [NOAA's killer whale anatomy notes](https://oceantoday.noaa.gov/killerwhaleanatomy/welcome.html) and [Ocean Wise](https://help.ocean.org/en/articles/9859506-killer-whale) — the animal is countershaded (black above, white below) and the saddle patch is grey, not white. The eye patch is drawn larger than true proportion on purpose: at roughly 40 cells long it is the only feature that still says "orca", and a faithful 2-cell patch reads as noise.
 
 ## License
 
-**None.** This repository grants no rights. See [NOTICE.md](NOTICE.md).
+**MIT.** See [LICENSE](LICENSE). Two copyright lines, side by side: drewdi (upstream engine) and OG Hong (the original parts of this repository). Keep the copyright banner at the top of `lib/client.js` when you redistribute the bundle.

@@ -1,4 +1,6 @@
 /**
+ * Copyright (c) 2026 OG Hong — MIT. See LICENSE at the repository root.
+ *
  * The ocean surface.
  *
  * The canvas is mounted *inside* the conversation column, not on the shell's

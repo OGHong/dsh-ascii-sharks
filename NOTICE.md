@@ -1,7 +1,8 @@
 # NOTICE — 来源、授权与注意事项
 
-这个项目**不是从零写的**。它建立在一个别人的开源项目之上，而那个项目缺少许可证文件。
-在分发、修改、商用之前，请把这份文件读完。**本仓库没有许可证。**
+这个项目**不是从零写的**。它建立在 [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks)
+之上，那个项目原来没有许可证文件 —— 2026-10-24 上游补上了 MIT。
+**本仓库同样是 MIT**，两段版权的归属写在下面。
 
 ---
 
@@ -10,13 +11,13 @@
 | 项 | 内容 |
 |---|---|
 | 项目 | [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks) |
+| 作者 | drewdi（`Copyright (c) 2026 drewdi`） |
 | 描述 | ascii shark components in typescript |
 | 技术 | TypeScript，零运行时依赖 |
-| 上游状态（查证于 2026-10） | **无 LICENSE 文件**；issue [#1 "Missing license"](https://github.com/stackedlol/ascii-sharks/issues/1) 处于 open 状态，两条评论均请求 MIT |
+| 许可证 | **MIT**，自 [`a0074c1 add MIT license`](https://github.com/stackedlol/ascii-sharks/commit/a0074c16a106f0abc665fe9712ca445f8f98ad8e)（2026-10-24）起 |
+| issue #1 | [Missing license](https://github.com/stackedlol/ascii-sharks/issues/1) 仍 open，但作者已在 2026-10-24 回复 **"Added MIT license"** |
 
 ### 从上游继承的部分
-
-以下**不是**本项目的原创工作，版权属于上游作者：
 
 - `src/world.ts` —— 鱼群 boids 求解器、Couzin 分区、恐慌传播、鲨鱼 follow-the-leader 脊柱、饥饿与捕食逻辑、无散度海流；
 - `src/species.ts` —— 五种鱼的行为参数表；
@@ -24,48 +25,52 @@
 - `src/shapes.ts` —— 八种鲨鱼的外形函数与鳍/鳃/眼的位置参数；
 - `src/math.ts` —— clamp、角度差、整数哈希、海流场。
 
+上游是把鲨鱼外形内联在 `renderer.ts` 里的，本仓库把外形函数拆到 `shapes.ts`，
+所以「移植」在这里指**代码搬家 + 改写为 ESM/TS + 在上面加东西**，不是逐字复制。
+
 ### 本项目的原创部分
 
 - 虎鲸外形（`orcaHalfWidth`、`flukes`、`paddle`、`patch`、`saddle`）与它在渲染器里的采样；
 - DSH 客户端插件的全部接线（`entry.ts`、`surface.tsx`、`settings-row.tsx`、`store.ts`、`index.ts`）；
 - 明暗主题适配、整体透明度、鲸类尾拍、离屏/可见性/减动效生命周期；
+- `engine.ts` 的宿主生命周期包装（上游同名文件只有 ~135 行裸循环，这里是 264 行的可嵌入版本）；
 - 构建产物与预览页（`scripts/`、`preview/`）。
 
 ---
 
-## 2. 授权现状：**没有许可证**
+## 2. 授权
 
-**本仓库不授予任何许可。** 没有 LICENSE 文件，没有 MIT，没有「随便用」。
+**MIT。** 见 [LICENSE](LICENSE)。那一个文件里并列两条版权行：
 
-原因很简单：既然移植进来的那部分代码本身没有授权，那么给整个仓库挂一个开源许可证就是在撒谎 —— 一个 MIT 标签会让人以为「这些代码可以自由使用」，而实际上上游那部分你不能从我这里获得任何权利。
-
-### 各部分的实际情况
-
-| 部分 | 版权 | 你可以做什么 |
+| 部分 | 版权 | 许可 |
 |---|---|---|
-| 移植的引擎（`world.ts` / `renderer.ts` / `shapes.ts` / `species.ts` / `math.ts`） | 上游作者，**未授权** | 严格说：除查看学习外，没有明确许可 |
-| 本项目原创（虎鲸外形、DSH 接线、主题适配等） | 本仓库作者 | 也未授权。想用请联系我 |
+| 移植的引擎（`world.ts` / `renderer.ts` / `shapes.ts` / `species.ts` / `math.ts`） | drewdi，**外加本仓库的移植与增补** | MIT |
+| 本仓库原创（虎鲸外形、DSH 接线、主题适配、生命周期、构建脚本） | OG Hong | MIT |
 
-### 实际影响
+两份都要求保留版权声明与许可全文 —— 所以：
 
-- **自己用、本地跑、读代码学习** —— 没人会来找你，这也是本仓库的定位；
-- **复用到自己项目** —— 移植部分你需要自己去找上游作者要授权，我这边给不了你；
-- **商业使用** —— 不要。两部分都没授权。
-- **重新分发本仓库** —— 请连同 `NOTICE.md` 一起，并且不要声称它是开源的。
+- **自己用、本地跑、读代码** —— 随意；
+- **复用到自己项目** —— 可以，带上 `LICENSE`；
+- **商用** —— 可以，带上 `LICENSE`；
+- **重新分发** —— 可以，带上 `LICENSE` 与这份 `NOTICE.md`。
 
-### 想让它可以被合法使用，三条路
+分发编译产物时注意：`lib/client.js` 是 esbuild 压过的单文件 bundle，
+源码里的注释不会留在里面。`scripts/build-client.mjs` 会在文件头写入一段
+MIT 版权 banner，用来满足「copies or substantial portions of the Software」
+那一句；**去掉那个 banner 再分发就是违反 MIT**。
 
-1. 去 [上游 issue #1](https://github.com/stackedlol/ascii-sharks/issues/1) 请求明确许可证（社区已有两条同样的请求）；
-2. 直接联系上游作者 `stackedlol` 取得书面授权；
-3. 按同样的算法思路重写受影响的文件（boids、Couzin 分区、follow-the-leader 都是公开发表的学术方法，不受版权保护；受保护的是具体代码表达）。重写之后，那部分就归重写者。
+### 时间线（为什么曾经是「无许可证」）
 
-在此之前，**请把本仓库视为「学习与个人使用」用途**。
+| 日期 | 事件 |
+|---|---|
+| 2026-10-20 前后 | 移植开始；上游无 LICENSE，issue #1 只有两条「投 MIT」的评论 |
+| 2026-10-21 | 在 issue #1 留言请求授权，说明移植范围；本仓库当时**主动撤掉 MIT**，改为「不授予任何权利」，因为给一个上游未授权的移植挂 MIT 是误导 |
+| 2026-10-24 16:05Z | 上游提交 `add MIT license` |
+| 2026-10-24 16:09Z | 上游作者在 issue #1 回复 "Added MIT license" |
+| 本次 | 本仓库恢复 MIT，`NOTICE`/`README`/文件头/包元数据/构建 banner 全部跟随 |
 
-### 已提出授权请求
-
-2026-10-21 已在 [上游 issue #1](https://github.com/stackedlol/ascii-sharks/issues/1#issuecomment-6312209674) 留言请求明确许可证，说明了本项目的性质、声明了哪些文件是移植的，并提供了「不给授权就重写」的选项。
-
-**截至该日，上游仍未回复。** 若后续取得授权（哪怕是 MIT），本仓库会补上 LICENSE 并更新此节；若被拒绝，受影响的五个文件会被重写。
+那段「无许可证」的历史不是错误，是当时唯一诚实的写法。上游一给出授权，
+这个理由就消失了，所以现在改回来。
 
 ---
 

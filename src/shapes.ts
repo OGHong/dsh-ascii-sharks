@@ -1,10 +1,12 @@
 /**
- * PORTED CODE — NOT covered by any license grant from this repository.
+ * PORTED CODE — MIT, two copyright holders.
  *
- * Derived from https://github.com/stackedlol/ascii-sharks, which had no license
- * file at the time of porting. Copyright remains with that project's author(s).
+ * Derived from https://github.com/stackedlol/ascii-sharks (Copyright (c) 2026 drewdi),
+ * which added its MIT license on 2026-10-24, after this port was made. The port and
+ * the additions on top of it are Copyright (c) 2026 OG Hong.
  *
- * This repository grants you no rights to this file. See NOTICE.md.
+ * Both are licensed under the MIT license in LICENSE at the repository root. NOTICE.md
+ * maps which part of this file is whose.
  */
 /**
  * Shark silhouettes, described as mathematics rather than stored as pictures.

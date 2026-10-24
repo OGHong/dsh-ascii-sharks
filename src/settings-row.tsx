@@ -1,4 +1,6 @@
 /**
+ * Copyright (c) 2026 OG Hong — MIT. See LICENSE at the repository root.
+ *
  * The settings surface, in two seats.
  *
  * `SettingsRow` is the block inside the General section — the quick switch most

@@ -1,4 +1,6 @@
 /**
+ * Copyright (c) 2026 OG Hong — MIT. See LICENSE at the repository root.
+ *
  * Wires the world and the renderer to a canvas: a fixed-timestep loop, resize,
  * pointer input, pausing when off-screen or hidden, and reduced motion.
  *
