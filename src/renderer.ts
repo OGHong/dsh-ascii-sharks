@@ -223,14 +223,19 @@ export class AsciiRenderer {
 	}
 
 	/**
-	 * Adopt a new canvas size and reallocate every per-cell field.
+	 * Adopt a new canvas size.
 	 *
 	 * The cell size follows the width in a coarse ladder rather than a formula:
 	 * between 8 and 13 pixels of column width the character grid keeps roughly the
 	 * same *count* of columns, so a wide window gets bigger glyphs instead of an
 	 * unreadable dust of tiny ones.
+	 *
+	 * Per-cell fields are reallocated **only when the grid changes shape**; see the
+	 * comment on the guard below for why that distinction matters.
 	 */
 	resize(width: number, height: number, dpr: number) {
+		const prevCols = this.cols;
+		const prevRows = this.rows;
 		this.width = width;
 		this.height = height;
 		this.dpr = dpr;
@@ -243,23 +248,29 @@ export class AsciiRenderer {
 		this.canvas.height = Math.max(1, Math.round(height * dpr));
 
 		const n = this.cols * this.rows;
-		this.dotPhase = new Float32Array(n);
-		this.dotFreq = new Float32Array(n);
-		this.energy = new Float32Array(n);
-		this.energyTmp = new Float32Array(n);
-		this.heat = new Float32Array(n);
-		this.bucketOf = new Uint8Array(n);
-		this.bucketOrder = new Int32Array(n);
+		// Reallocate only when the grid actually changed shape. A resize that keeps
+		// the same cols/rows (dragging a window edge by a few pixels, a DPR flip
+		// that rounds back to the same cell count) would otherwise wipe every trail
+		// field, and the wake behind the pod would vanish on every pointer-up.
+		// Ported from upstream `1c3a384 resize fix` (PR #3).
+		if (this.cols !== prevCols || this.rows !== prevRows) {
+			this.dotPhase = new Float32Array(n);
+			this.dotFreq = new Float32Array(n);
+			this.energy = new Float32Array(n);
+			this.energyTmp = new Float32Array(n);
+			this.heat = new Float32Array(n);
+			this.bucketOf = new Uint8Array(n);
+			this.bucketOrder = new Int32Array(n);
+			this.sharkFlag = new Uint8Array(n);
+			this.sharkShade = new Float32Array(n);
+			this.sharkKey = new Uint32Array(n);
+			this.sharkDepth = new Float32Array(n);
+			this.sharkKind = new Uint8Array(n);
+			this.sharkShadow = new Uint8Array(n);
+			this.fishStamp = new Uint32Array(n);
+			this.accentIdx = new Int32Array(n);
+		}
 		this.bucketCounts = new Int32Array(ALPHA_LEVELS + 1);
-
-		this.sharkFlag = new Uint8Array(n);
-		this.sharkShade = new Float32Array(n);
-		this.sharkKey = new Uint32Array(n);
-		this.sharkDepth = new Float32Array(n);
-		this.sharkKind = new Uint8Array(n);
-		this.sharkShadow = new Uint8Array(n);
-		this.fishStamp = new Uint32Array(n);
-		this.accentIdx = new Int32Array(n);
 
 		for (let i = 0; i < n; i++) {
 			const col = i % this.cols;
